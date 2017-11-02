@@ -1,0 +1,56 @@
+<!Doctype html>
+<html>
+
+<head>
+	<title>Psychic Game</title>
+</head>
+
+<body>
+	<h1> The Psychic Game </h1>
+	<div id="psychic">
+		<p>Guess what letter I am thinking of </p>
+	</div>
+
+	<script type="text/javascript">
+		var guessL = 10;
+		var wins = 0;
+		var losses = 0;
+		var guesses = [];
+
+		document.onkeyup = function(event) {
+			guessL--
+			var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+			guesses.push(userGuess)
+
+			function getRandomInt(min, max) {
+				min = Math.ceil(min);
+				max = Math.floor(max);
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+			var randomKey = getRandomInt(8, 222)
+			var compGuess = String.fromCharCode(randomKey).toLowerCase();
+			//	console.log(user);
+
+			if (userGuess === compGuess) {
+
+				wins++;
+			}
+			else {
+				losses++
+			}
+
+
+			var html = "<p> guess what letter I am thinking of</p>" +
+				"<p>Wins: " + wins + "</p>" +
+				"<p>losses: " + losses + "</p>" +
+				"<p>Guesses Left " + guessL + "</p>" +
+				"<p>letters guessed " + guesses.join(", ") + "</p>";
+			document.querySelector('#psychic').innerHTML = html;
+
+
+		}
+	</script>
+
+</body>
+
+</html>
